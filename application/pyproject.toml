@@ -14,6 +14,7 @@ SQLAlchemy = "^2.0.28"
 gunicorn = "^20.1.0"
 requests = "^2.31.0"
 boto3 = "^1.26.22"
+pydantic= "^1.10.4"
 
 [tool.poetry.dev-dependencies]
 black = "^24.3.0"
