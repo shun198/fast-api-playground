@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-
 from routers import common, user
+from settings.database import init_db
+
+init_db()
 
 app = FastAPI(
     title="FastAPI Playground",
