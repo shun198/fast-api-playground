@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 
 class UserBase(BaseModel):
     email: str
+    name: str = Field(max_length=255)
 
 
 class UserCreate(UserBase):
@@ -12,7 +13,6 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    name: str = Field(max_length=255)
     is_active: bool
 
     class Config:
