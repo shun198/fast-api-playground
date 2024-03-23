@@ -12,8 +12,8 @@ class VariableSettings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_PORT: int
     TEST_POSTGRES_NAME: Optional[str] = None
-    CORS_ORIGIN: str
-    SLACK_WEBHOOK_URL: str
+    CORS_ORIGIN: str = ""
+    SLACK_WEBHOOK_URL: str = ""
 
 
 settings = VariableSettings()

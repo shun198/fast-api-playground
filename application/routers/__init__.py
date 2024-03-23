@@ -1,4 +1,4 @@
-from settings.database import session
+from settings.database import get_session
 
 
 def get_db():
@@ -10,7 +10,7 @@ def get_db():
         db: SQLAlchemyで生成したセッションインスタンス
     """
     try:
-        db = session()
+        db = get_session()
         yield db
     finally:
         db.close()
