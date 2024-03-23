@@ -27,3 +27,9 @@ app:
 
 db:
 	docker exec -it $(DB_CONTAINER_NAME) bash
+
+makemigration:
+	$(RUN_POETRY) alembic revision --autogenerate 
+
+migrate:
+	$(RUN_POETRY) alembic upgrade head

@@ -15,17 +15,6 @@ connection_url = URL.create(
 )
 
 
-def init_db():
-    """DBの初期化を行う"""
-    engine = get_engine()
-    if not database_exists(engine.url):
-        # DBを新規作成する
-        create_database(engine.url)
-
-        # 定義されているテーブルを作成
-        User.metadata.create_all(bind=engine)
-
-
 def get_engine():
     """DBの接続情報を定義する
 
@@ -36,6 +25,17 @@ def get_engine():
     return create_engine(
         connection_url,
     )
+
+
+def init_db():
+    """DBの初期化を行う"""
+    engine = get_engine()
+    if not database_exists(engine.url):
+        # DBを新規作成する
+        create_database(engine.url)
+
+        # 定義されているテーブルを作成
+        User.metadata.create_all(bind=engine)
 
 
 def get_session():
@@ -49,5 +49,6 @@ def get_session():
         # ORMの設定。自動コミットと自動反映はオフにする
         sessionmaker(autocommit=False, autoflush=False, bind=engine)
     )
+    User.query = session.query_property()
     return session
 
