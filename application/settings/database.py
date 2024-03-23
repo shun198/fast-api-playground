@@ -1,7 +1,8 @@
-from settings.environment_variables import settings
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, scoped_session, sessionmaker
+
+from settings.environment_variables import settings
 
 DATABASE_URL = URL.create(
     drivername="postgres",
@@ -12,9 +13,34 @@ DATABASE_URL = URL.create(
     port=settings.POSTGRES_PORT,
 )
 
-engine = create_engine(DATABASE_URL)
 
-# DBのセッションを作成
-session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+def get_engine():
+    """DBの接続情報を定義する
+
+    Returns:
+        create_engine: engineオブジェクト
+    """
+    # DBとの接続
+    return create_engine(
+        DATABASE_URL,
+        # 文字コードを指定
+        encoding="utf8mb4",
+        hide_parameters=True,
+    )
+
+
+def get_session():
+    """セッションの取得
+
+    Returns:
+        scoped_session: DBのsessionインスタンス
+    """
+    engine = get_engine()
+    session = scoped_session(
+        # ORMの設定。自動コミットと自動反映はオフにする
+        sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    )
+    return session
+
 
 Base = declarative_base()

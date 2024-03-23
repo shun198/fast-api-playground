@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from routers import common, user
 
 app = FastAPI(
