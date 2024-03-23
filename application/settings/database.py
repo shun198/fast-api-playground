@@ -1,9 +1,10 @@
-from models.user import User
-from settings.environment_variables import settings
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy_utils import create_database, database_exists
+
+from models.user import User
+from settings.environment_variables import settings
 
 connection_url = URL.create(
     drivername="postgresql",
@@ -51,4 +52,3 @@ def get_session():
     )
     User.query = session.query_property()
     return session
-
