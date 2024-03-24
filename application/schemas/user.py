@@ -3,22 +3,27 @@ from pydantic import BaseModel, Field
 
 
 class UserBase(BaseModel):
+    """システムユーザのschema定義
+
+    Args:
+        BaseModel
+    """
     email: str = Field(
         max_length=254,
         examples=["example.com"],
-        description="システムユーザのメールアドレス",
+        description="メールアドレス",
     )
     name: str = Field(
         max_length=255,
         examples=["テストユーザ01"],
-        description="システムユーザのユーザ名",
+        description="ユーザ名",
     )
 
 
 class UserCreate(UserBase):
     password: str = Field(
         max_length=255,
-        description="システムユーザのパスワード",
+        description="パスワード",
     )
 
 
