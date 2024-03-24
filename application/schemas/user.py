@@ -1,5 +1,5 @@
 # https://fastapi.tiangolo.com/tutorial/sql-databases/
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 
 class UserBase(BaseModel):
@@ -8,8 +8,7 @@ class UserBase(BaseModel):
     Args:
         BaseModel
     """
-    email: str = Field(
-        max_length=254,
+    email: EmailStr = Field(
         examples=["example.com"],
         description="メールアドレス",
     )
