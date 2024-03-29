@@ -8,6 +8,7 @@ class UserBase(BaseModel):
     Args:
         BaseModel
     """
+
     email: EmailStr = Field(
         examples=["example.com"],
         description="メールアドレス",
