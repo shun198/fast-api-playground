@@ -1,5 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, FastAPI
 
+app = FastAPI()
 router = APIRouter()
 
 
@@ -7,3 +8,6 @@ router = APIRouter()
 async def health_check():
     """ヘルスチェック用のAPI"""
     return {"status": "pass"}
+
+
+app.include_router(router)

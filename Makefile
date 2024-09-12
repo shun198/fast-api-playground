@@ -3,6 +3,9 @@ DB_CONTAINER_NAME = db
 RUN_APP = docker-compose exec $(APP_CONTAINER_NAME)
 RUN_POETRY =  $(RUN_APP) poetry run
 
+prepare:
+	docker-compose up -d --build
+
 up:
 	docker-compose up -d
 
