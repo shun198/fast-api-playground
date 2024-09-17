@@ -14,6 +14,7 @@ class VariableSettings(BaseSettings):
     TEST_POSTGRES_NAME: Optional[str] = None
     CORS_ORIGIN: str = ""
     SLACK_WEBHOOK_URL: str = ""
+    SECRET_KEY: str = "secret_key"
 
 
 settings = VariableSettings()
