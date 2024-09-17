@@ -1,13 +1,14 @@
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter
+from pydantic import BaseModel
 
-app = FastAPI()
 router = APIRouter()
 
 
-@router.get("/health")
+class HealthCheck(BaseModel):
+    status: str = "pass"
+
+
+@router.get("/health", response_model=HealthCheck)
 async def health_check():
     """ヘルスチェック用のAPI"""
     return {"status": "pass"}
-
-
-app.include_router(router)
