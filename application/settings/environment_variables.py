@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseSettings
 
 
@@ -9,6 +11,7 @@ class VariableSettings(BaseSettings):
     POSTGRES_PASSWORD: str = "postgres"
     POSTGRES_HOST: str = "db"
     POSTGRES_PORT: int = 5432
+    TEST_POSTGRES_NAME: Optional[str] = None
     TRUSTED_ORIGINS: list[str] = ["localhost"]
     SLACK_WEBHOOK_URL: str = ""
     SECRET_KEY: str = "secret_key"

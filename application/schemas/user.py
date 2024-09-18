@@ -36,3 +36,10 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+
+class IsActiveUser(BaseModel):
+    is_active: bool = Field(
+        default=True,
+        description="有効・無効化フラグ",
+    )

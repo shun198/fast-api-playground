@@ -26,6 +26,22 @@ def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
 
+def get_user_by_id(db: Session, user_id: str):
+    try:
+        return db.query(User).get(int(user_id))
+    except Exception:
+        return None
+
+
+def toggle_user_active(db: Session, user: User):
+    if user.is_active:
+        user.is_active = False
+    else:
+        user.is_active = True
+    db.commit()
+    return user
+
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
