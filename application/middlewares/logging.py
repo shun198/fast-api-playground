@@ -13,7 +13,8 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         try:
             response: Response = await call_next(request)
         except Exception as e:
-            send_slack_message(str(e))
+            if not settings.DEBUG:
+                send_slack_message(str(e))
             logging.error(e._errors)
         return response
 

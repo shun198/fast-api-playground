@@ -15,6 +15,7 @@ class VariableSettings(BaseSettings):
     TRUSTED_ORIGINS: list[str] = ["localhost"]
     SLACK_WEBHOOK_URL: str = ""
     SECRET_KEY: str = "secret_key"
+    DEBUG: bool = True
 
 
 settings = VariableSettings()
