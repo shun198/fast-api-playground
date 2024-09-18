@@ -36,3 +36,15 @@ def toggle_user_active(user_id: str, db: Session = Depends(get_db)):
         )
     active_user = user.toggle_user_active(db, db_user)
     return {"is_active": active_user.is_active}
+
+
+@router.patch("/change_user_details/{user_id}", response_model=IsActiveUser)
+def change_user_details(user_id: str, db: Session = Depends(get_db)):
+    db_user = user.get_user_by_id(db, user_id)
+    if not db_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="存在しないユーザです",
+        )
+    updated_user = user.toggle_user_active(db, db_user)
+    return updated_user

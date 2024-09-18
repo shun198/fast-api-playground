@@ -42,6 +42,9 @@ def toggle_user_active(db: Session, user: User):
     return user
 
 
+def update_user(db: Session, user: User):
+    return user
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
