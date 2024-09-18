@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from middlewares.logging import LoggingMiddleware
 from routers import common, user
 from settings.database import init_db
+from settings.environment_variables import settings
 
 init_db()
 
@@ -12,17 +13,14 @@ app = FastAPI(
     version="0.0.1",
 )
 
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-]
+origins = settings.TRUSTED_ORIGINS
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["x-csrftoken"],
 )
 app.add_middleware(LoggingMiddleware)
 app.include_router(common.router, prefix="/api", tags=["common"])
