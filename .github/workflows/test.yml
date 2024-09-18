@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: {{ env.WORKING_DIRECTORY }}
+        working-directory: ${{ env.WORKING_DIRECTORY }}
     # Postgresのサービスコンテナを設定
     services:
       db:
@@ -62,5 +62,5 @@ jobs:
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@main
         with:
-          pytest-coverage-path: {{ env.WORKING_DIRECTORY }}/pytest-coverage.txt
-          junitxml-path: {{ env.WORKING_DIRECTORY }}/pytest.xml
+          pytest-coverage-path: ${{ env.WORKING_DIRECTORY }}/pytest-coverage.txt
+          junitxml-path: ${{ env.WORKING_DIRECTORY }}/pytest.xml
