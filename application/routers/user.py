@@ -46,5 +46,5 @@ def change_user_details(user_id: str, db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="存在しないユーザです",
         )
-    updated_user = user.toggle_user_active(db, db_user)
+    updated_user = user.update_user(db, db_user)
     return updated_user

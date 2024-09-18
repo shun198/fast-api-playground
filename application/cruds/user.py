@@ -2,7 +2,7 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from models.user import User
-from schemas.user import UserCreate
+from schemas.user import UserCreate, UserBase
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 10):
@@ -42,8 +42,9 @@ def toggle_user_active(db: Session, user: User):
     return user
 
 
-def update_user(db: Session, user: User):
-    return user
+def update_user(db: Session, db_user: UserBase):
+    db.commit()
+    return db_user
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
